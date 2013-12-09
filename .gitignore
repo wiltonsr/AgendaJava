@@ -5,7 +5,7 @@ bin
 .classpath
 .project
 .settings/
-buil.xml
-buil/
+build.xml
+build/
 dist/
 nbproject
