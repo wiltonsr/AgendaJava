@@ -1,10 +1,13 @@
 package models;
 
+import java.util.ArrayList;
+
 class Agenda {
 
     String nomeAgenda;
     String descricao;
-
+    ArrayList<Evento> meusEventos;
+    
     public Agenda(String nomeAgenda) {
         this.nomeAgenda = nomeAgenda;
     }
