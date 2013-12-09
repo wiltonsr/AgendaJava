@@ -1,5 +1,7 @@
 package models;
 
+import java.util.ArrayList;
+
 public class Usuario {
 	private String id;
 	private String nome;
@@ -8,6 +10,7 @@ public class Usuario {
 	private String senha;
 	private String telefone;
 	private String email;
+        private ArrayList<Agenda> minhasAgendas;
 
     public Usuario(String id, String nome, char sexo, Data dataNascimento, String senha, String telefone, String email) {
         this.id = id;
