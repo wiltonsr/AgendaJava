@@ -2,3 +2,10 @@
 *.swp
 
 bin
+.classpath
+.project
+.settings/
+buil.xml
+buil/
+dist/
+nbproject
