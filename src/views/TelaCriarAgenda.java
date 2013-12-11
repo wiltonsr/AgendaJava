@@ -31,9 +31,10 @@ public class TelaCriarAgenda extends javax.swing.JFrame {
         jLabelNomeAgenda = new javax.swing.JLabel();
         jTextFieldNomeAgenda = new javax.swing.JTextField();
         jLabelDescricao = new javax.swing.JLabel();
-        jTextFieldDescricao = new javax.swing.JTextField();
-        jButtonOk = new javax.swing.JButton();
+        jButtonCriar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextAreaDescricao = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,9 +48,13 @@ public class TelaCriarAgenda extends javax.swing.JFrame {
 
         jLabelDescricao.setText("Descrição: ");
 
-        jButtonOk.setText("OK");
+        jButtonCriar.setText("Criar");
 
         jButtonCancelar.setText("Cancelar");
+
+        jTextAreaDescricao.setColumns(20);
+        jTextAreaDescricao.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaDescricao);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -63,13 +68,13 @@ public class TelaCriarAgenda extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jButtonOk)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonCancelar))
-                    .addComponent(jTextFieldNomeAgenda, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                    .addComponent(jTextFieldDescricao))
-                .addContainerGap(88, Short.MAX_VALUE))
+                        .addGap(101, 101, 101)
+                        .addComponent(jButtonCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonCriar))
+                    .addComponent(jTextFieldNomeAgenda)
+                    .addComponent(jScrollPane1))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -81,10 +86,10 @@ public class TelaCriarAgenda extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelDescricao)
-                    .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonOk)
+                    .addComponent(jButtonCriar)
                     .addComponent(jButtonCancelar))
                 .addGap(26, 26, 26))
         );
@@ -133,10 +138,11 @@ public class TelaCriarAgenda extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JButton jButtonOk;
+    private javax.swing.JButton jButtonCriar;
     private javax.swing.JLabel jLabelDescricao;
     private javax.swing.JLabel jLabelNomeAgenda;
-    private javax.swing.JTextField jTextFieldDescricao;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextAreaDescricao;
     private javax.swing.JTextField jTextFieldNomeAgenda;
     // End of variables declaration//GEN-END:variables
 }
