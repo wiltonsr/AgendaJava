@@ -15,6 +15,11 @@ class Data {
         this.hora = hora;
         this.minuto = minuto;
     }
+    
+    public Data(int hora, int minuto){
+        this.hora = hora;
+        this.minuto = minuto;
+    }
 
     public Data(int dia, int mes, int ano) {
         this.dia = dia;
