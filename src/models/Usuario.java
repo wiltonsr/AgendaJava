@@ -3,17 +3,17 @@ package models;
 import java.util.ArrayList;
 
 public class Usuario {
-	private String id;
+	private String usuario;
 	private String nome;
 	private char sexo;
 	private Data dataNascimento;
 	private String senha;
 	private String telefone;
 	private String email;
-        private ArrayList<Agenda> minhasAgendas;
+    private ArrayList<Agenda> minhasAgendas;
 
-    public Usuario(String id, String nome, char sexo, Data dataNascimento, String senha, String telefone, String email) {
-        this.id = id;
+    public Usuario(String usuario, String nome, char sexo, Data dataNascimento, String senha, String telefone, String email) {
+        this.usuario = usuario;
         this.nome = nome;
         this.sexo = sexo;
         this.dataNascimento = dataNascimento;
@@ -23,10 +23,10 @@ public class Usuario {
     }
         
 	public String getId() {
-		return id;
+		return usuario;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setId(String usuario) {
+		this.usuario = usuario;
 	}
 	public String getNome() {
 		return nome;
