@@ -2,15 +2,13 @@ package models;
 
 public class Evento {
 
-    private Agenda agenda;
     private String nomeEvento;
     private Data dataInicio;
     private Data dataFim;
     private String localEvento;
     private String Descricao;
 
-    public Evento(Agenda agenda, String nomeEvento, Data dataInicio, Data dataFim) {
-        this.agenda = agenda;
+    public Evento(String nomeEvento, Data dataInicio, Data dataFim) {
         this.nomeEvento = nomeEvento;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
@@ -22,14 +20,6 @@ public class Evento {
 
     public void setDescricao(String Descricao) {
         this.Descricao = Descricao;
-    }
-
-    public Agenda getAgenda() {
-        return agenda;
-    }
-
-    public void setAgenda(Agenda agenda) {
-        this.agenda = agenda;
     }
 
     public Data getDataFim() {
