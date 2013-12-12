@@ -8,17 +8,30 @@ package views;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Wilton
- */
 public class TelaCriarAgenda extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaCriarAgenda
-     */
     public TelaCriarAgenda() {
         initComponents();
+        this.labelCampoInvalidoInvisivel();
+    }
+    
+    private void limparCampos() {
+        jTextFieldNomeAgenda.setText(null);
+    }
+    
+    private void labelCampoInvalidoInvisivel(){
+        jLabelNomeAgendaInvalido.setVisible(false);
+    }
+    
+    private boolean validarCampos() {
+        boolean todosCamposSaoValidos = true;
+        if (jTextFieldNomeAgenda.getText().isEmpty()) {
+            jLabelNomeAgendaInvalido.setVisible(true);
+            jTextFieldNomeAgenda.requestFocus();
+            todosCamposSaoValidos = false;
+        }else  jLabelNomeAgendaInvalido.setVisible(false);
+        
+        return (todosCamposSaoValidos);
     }
     
         /**
@@ -37,6 +50,7 @@ public class TelaCriarAgenda extends javax.swing.JFrame {
         jButtonCancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaDescricao = new javax.swing.JTextArea();
+        jLabelNomeAgendaInvalido = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,6 +72,10 @@ public class TelaCriarAgenda extends javax.swing.JFrame {
         jTextAreaDescricao.setRows(5);
         jScrollPane1.setViewportView(jTextAreaDescricao);
 
+        jLabelNomeAgendaInvalido.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabelNomeAgendaInvalido.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelNomeAgendaInvalido.setText("O nome da Agenda deve ter ao menos 1 caractere.");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,14 +87,16 @@ public class TelaCriarAgenda extends javax.swing.JFrame {
                     .addComponent(jLabelDescricao))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(jButtonCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonCriar))
-                    .addComponent(jTextFieldNomeAgenda)
-                    .addComponent(jScrollPane1))
-                .addContainerGap(37, Short.MAX_VALUE))
+                    .addComponent(jLabelNomeAgendaInvalido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(101, 101, 101)
+                            .addComponent(jButtonCancelar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButtonCriar))
+                        .addComponent(jTextFieldNomeAgenda)
+                        .addComponent(jScrollPane1)))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,15 +105,17 @@ public class TelaCriarAgenda extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNomeAgenda)
                     .addComponent(jTextFieldNomeAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addComponent(jLabelNomeAgendaInvalido)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelDescricao)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCriar)
                     .addComponent(jButtonCancelar))
-                .addGap(26, 26, 26))
+                .addContainerGap())
         );
 
         pack();
@@ -138,21 +160,12 @@ public class TelaCriarAgenda extends javax.swing.JFrame {
         });
     }
     
-    
-    private boolean validarCampos(){
-        if (jTextFieldNomeAgenda.getText().trim().length() == 0) {
-            JOptionPane.showMessageDialog(null, "O valor do campo 'Agenda' não foi informado.");
-            jTextFieldNomeAgenda.requestFocus();
-            return false;
-        }else{
-            return true;
-        }
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonCriar;
     private javax.swing.JLabel jLabelDescricao;
     private javax.swing.JLabel jLabelNomeAgenda;
+    private javax.swing.JLabel jLabelNomeAgendaInvalido;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextAreaDescricao;
     private javax.swing.JTextField jTextFieldNomeAgenda;
