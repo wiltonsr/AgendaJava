@@ -24,9 +24,9 @@ public class ControleUsuarios {
     }
 
     public Usuario pesquisar(String nome) {
-        for (Usuario b : listaUsuarios) {
-            if (b.getNome().equalsIgnoreCase(nome)) {
-                return b;
+        for (Usuario u : listaUsuarios) {
+            if (u.getNome().equalsIgnoreCase(nome)) {
+                return u;
             }
         }
         return null;
