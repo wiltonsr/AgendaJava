@@ -1,18 +1,19 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Usuario {
 
     private String usuario;
     private String nome;
     private char sexo;
-    private Data dataNascimento;
+    private Date dataNascimento;
     private char[] senha;
     private String email;
-    private ArrayList<Agenda> minhasAgendas;
+    private ArrayList<Evento> meusEventos;
 
-    public Usuario(String usuario, String nome, char sexo, Data dataNascimento, char[] senha, String email) {
+    public Usuario(String usuario, String nome, char sexo, Date dataNascimento, char[] senha, String email) {
         this.usuario = usuario;
         this.nome = nome;
         this.sexo = sexo;
@@ -49,11 +50,11 @@ public class Usuario {
         this.sexo = sexo;
     }
 
-    public Data getDataNascimento() {
+    public Date getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Data dataNascimento) {
+    public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -71,5 +72,21 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    
+    public ArrayList<Evento> getMeusEventos() {
+        return meusEventos;
+    }
+
+    public void setMeusEventos(ArrayList<Evento> meusEventos) {
+        this.meusEventos = meusEventos;
+    }
+    
+    public void adicionarEvento(Evento novoEvento){
+        this.meusEventos.add(novoEvento);
+    }
+    
+    public void removerEvento(Evento umEvento){
+        this.meusEventos.remove(umEvento);
     }
 }

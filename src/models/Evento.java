@@ -1,19 +1,60 @@
 package models;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class Evento {
 
-    private Agenda agenda;
     private String nomeEvento;
-    private Data dataInicio;
-    private Data dataFim;
+    private Date dataInicio;
+    private Date dataFim;
+    private int horaInicio;
+    private int minInicio;
+    private int horaFim;
+    private int minFim;
     private String localEvento;
     private String Descricao;
 
-    public Evento(Agenda agenda, String nomeEvento, Data dataInicio, Data dataFim) {
-        this.agenda = agenda;
+    public Evento(String nomeEvento, Date dataInicio, Date dataFim) {
         this.nomeEvento = nomeEvento;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
+    }
+    
+    public int getHoraInicio() {
+        return horaInicio;
+    }
+
+    public void setHoraInicio(int horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    public int getMinInicio() {
+        return minInicio;
+    }
+
+    public void setMinInicio(int minInicio) {
+        this.minInicio = minInicio;
+    }
+
+    public int getHoraFim() {
+        return horaFim;
+    }
+
+    public void setHoraFim(int horaFim) {
+        this.horaFim = horaFim;
+    }
+
+    public int getMinFim() {
+        return minFim;
+    }
+
+    public void setMinFim(int minFim) {
+        this.minFim = minFim;
+    }
+    
+    public Evento(String nomeEvento){
+        this.nomeEvento = nomeEvento;
     }
 
     public String getDescricao() {
@@ -24,27 +65,19 @@ public class Evento {
         this.Descricao = Descricao;
     }
 
-    public Agenda getAgenda() {
-        return agenda;
-    }
-
-    public void setAgenda(Agenda agenda) {
-        this.agenda = agenda;
-    }
-
-    public Data getDataFim() {
+    public Date getDataFim() {
         return dataFim;
     }
 
-    public void setDataFim(Data dataFim) {
+    public void setDataFim(Date dataFim) {
         this.dataFim = dataFim;
     }
 
-    public Data getDataInicio() {
+    public Date getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(Data dataInicio) {
+    public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
     }
 

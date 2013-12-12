@@ -6,7 +6,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import models.Usuario;
-import models.Data;
 
 public class TelaLogin extends javax.swing.JFrame {
 
@@ -27,10 +26,10 @@ public class TelaLogin extends javax.swing.JFrame {
         jTextFieldCriarNome.setText(null);
         jPasswordFieldCriarSenha.setText(null);
         jPasswordSenha.setText(null);
-        jComboBoxCriarDiaNascimento.setSelectedIndex(0);
-        jComboBoxCriarMesNascimento.setSelectedIndex(0);
-        jComboBoxCriarAnoNascimento.setSelectedIndex(0);
+        jDateChooserNascimento.cleanup();
         buttonGroupCriarSexo.clearSelection();
+        jPasswordFieldConfirmarSenha.setText(null);
+        jDateChooserNascimento.setDate(null);
     }
 
     private void labelCampoInvalidoInvisivel(){
@@ -72,19 +71,17 @@ public class TelaLogin extends javax.swing.JFrame {
         if(buttonGroupCriarSexo.isSelected(null)){
             jLabelCriarSexoInvalido.setVisible(true);
             todosCamposSaoValidos = false;
-        }else jLabelCriarSexoInvalido.setVisible(false); 
-        if(jComboBoxCriarDiaNascimento.getSelectedIndex() == 0
-                || jComboBoxCriarMesNascimento.getSelectedIndex() == 0
-                || jComboBoxCriarAnoNascimento.getSelectedIndex() == 0) {
-            jLabelCriarAniversarioInvalido.setVisible(true); 
-            todosCamposSaoValidos = false;  
-        }else jLabelCriarAniversarioInvalido.setVisible(false);    
+        }else jLabelCriarSexoInvalido.setVisible(false);   
         if(validarFormatacaoEmail(jTextFieldCriarEmail.getText())){
             jLabelCriarEmaiIInvalido.setVisible(false);
         }else{
             jLabelCriarEmaiIInvalido.setVisible(true);
             todosCamposSaoValidos = false;
         }
+        if(jDateChooserNascimento.getDate() == null){
+            jLabelCriarAniversarioInvalido.setVisible(true);
+            todosCamposSaoValidos = false;
+        }else jLabelCriarAniversarioInvalido.setVisible(false);
         return (todosCamposSaoValidos);
     }
     
@@ -94,12 +91,7 @@ public class TelaLogin extends javax.swing.JFrame {
         novoUsuario.setEmail(jTextFieldCriarEmail.getText());
         novoUsuario.setSenha(jPasswordFieldCriarSenha.getPassword());
         novoUsuario.setNome(jTextFieldCriarNome.getText());
-
-        int umDia = Integer.parseInt(jComboBoxCriarDiaNascimento.getSelectedItem().toString());
-        int umMes = jComboBoxCriarMesNascimento.getSelectedIndex();
-        int umAno = Integer.parseInt(jComboBoxCriarAnoNascimento.getSelectedItem().toString());
-        Data umaData = new Data(umDia, umMes, umAno);
-        novoUsuario.setDataNascimento(umaData);
+        novoUsuario.setDataNascimento(jDateChooserNascimento.getDate());
 
         if (jRadioButtonCriarSexoF.equals(buttonGroupCriarSexo.getSelection())) {
             novoUsuario.setSexo('f');
@@ -140,9 +132,6 @@ public class TelaLogin extends javax.swing.JFrame {
         jRadioButtonCriarSexoF = new javax.swing.JRadioButton();
         jRadioButtonCriarSexoM = new javax.swing.JRadioButton();
         jLabelCriarDataNasc = new javax.swing.JLabel();
-        jComboBoxCriarDiaNascimento = new javax.swing.JComboBox();
-        jComboBoxCriarMesNascimento = new javax.swing.JComboBox();
-        jComboBoxCriarAnoNascimento = new javax.swing.JComboBox();
         jLabelTitulo1 = new javax.swing.JLabel();
         jLabelTitulo2 = new javax.swing.JLabel();
         jButtonCriarConta = new javax.swing.JButton();
@@ -155,6 +144,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jPasswordFieldConfirmarSenha = new javax.swing.JPasswordField();
         jLabelConfirmarSenhaInvalido = new javax.swing.JLabel();
         jLabelConfirmarSenha = new javax.swing.JLabel();
+        jDateChooserNascimento = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -223,12 +213,6 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabelCriarDataNasc.setText("Data de nascimento:");
 
-        jComboBoxCriarDiaNascimento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dia", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-
-        jComboBoxCriarMesNascimento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mês", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" }));
-
-        jComboBoxCriarAnoNascimento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ano", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950", "1949", "1948", "1947", "1946", "1945", "1944", "1943", "1942", "1941", "1940", "1939", "1938", "1937", "1936", "1935", "1934", "1933", "1932", "1931", "1930", "1929", "1928", "1927", "1926", "1925", "1924", "1923", "1922", "1921", "1920", "1919", "1918", "1917", "1916", "1915", "1914", "1913", "1912", "1911", "1910", "1909", "1908", "1907", "1906", "1905", "1904", "1903", "1902", "1901", "1900", "1899", "1898", "1897", "1896", "1895", "1894", "1893", "1892", "1891", "1890", "1889", "1888", "1887", "1886", "1885", "1884", "1883", "1882", "1881", "1880", "1879", "1878", "1877", "1876", "1875", "1874", "1873", "1872", "1871", "1870", "1869", "1868", "1867", "1866", "1865", "1864", "1863", "1862", "1861", "1860", "1859", "1858", "1857", "1856", "1855", "1854", "1853", "1852", "1851", "1850" }));
-
         jLabelTitulo1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabelTitulo1.setText("Não tem uma Conta?");
 
@@ -244,7 +228,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabelCriarUsuarioInvalido.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
         jLabelCriarUsuarioInvalido.setForeground(new java.awt.Color(255, 0, 0));
-        jLabelCriarUsuarioInvalido.setText("O nome de usuáriio deve ter entre 8 e 32 caracteres.");
+        jLabelCriarUsuarioInvalido.setText("O nome de usuáriio deve ter entre 5 e 32 caracteres.");
 
         jLabelCriarEmaiIInvalido.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
         jLabelCriarEmaiIInvalido.setForeground(new java.awt.Color(255, 0, 0));
@@ -264,7 +248,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabelCriarAniversarioInvalido.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
         jLabelCriarAniversarioInvalido.setForeground(new java.awt.Color(255, 0, 0));
-        jLabelCriarAniversarioInvalido.setText("Selecione o dia, mês e ano do seu nascimento.");
+        jLabelCriarAniversarioInvalido.setText("Selecione sua data de nascimento.");
 
         jLabelConfirmarSenhaInvalido.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
         jLabelConfirmarSenhaInvalido.setForeground(new java.awt.Color(255, 0, 0));
@@ -312,13 +296,8 @@ public class TelaLogin extends javax.swing.JFrame {
                                                 .addComponent(jTextFieldCriarNome))
                                             .addComponent(jLabelCriarSenhaInvalido, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabelConfirmarSenhaInvalido, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabelCriarNomeInvalido, javax.swing.GroupLayout.Alignment.LEADING)))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBoxCriarDiaNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxCriarMesNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxCriarAnoNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabelCriarNomeInvalido, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addComponent(jDateChooserNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jLabelCriarAniversarioInvalido)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabelConfirmarSenha)
@@ -399,11 +378,9 @@ public class TelaLogin extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelCriarSexo)
                         .addGap(4, 4, 4)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelCriarDataNasc)
-                    .addComponent(jComboBoxCriarDiaNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxCriarMesNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxCriarAnoNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateChooserNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelCriarAniversarioInvalido)
                 .addGap(18, 18, 18)
@@ -497,9 +474,7 @@ private void jTextFieldCriarEmailInputMethodTextChanged(java.awt.event.InputMeth
     private javax.swing.ButtonGroup buttonGroupCriarSexo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCriarConta;
-    private javax.swing.JComboBox jComboBoxCriarAnoNascimento;
-    private javax.swing.JComboBox jComboBoxCriarDiaNascimento;
-    private javax.swing.JComboBox jComboBoxCriarMesNascimento;
+    private com.toedter.calendar.JDateChooser jDateChooserNascimento;
     private javax.swing.JLabel jLabelConfirmarSenha;
     private javax.swing.JLabel jLabelConfirmarSenhaInvalido;
     private javax.swing.JLabel jLabelCriarAniversarioInvalido;
