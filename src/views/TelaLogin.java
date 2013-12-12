@@ -85,6 +85,12 @@ public class TelaLogin extends javax.swing.JFrame {
         jComboBoxCriarAnoNascimento = new javax.swing.JComboBox();
         jLabelCriarTelefone = new javax.swing.JLabel();
         jTextFieldCriarTelefone = new javax.swing.JTextField();
+        try{ 
+            javax.swing.text.MaskFormatter telefone = new javax.swing.text.MaskFormatter("(##)####-####"); 
+            jTextFieldCriarTelefone = new javax.swing.JFormattedTextField(telefone); 
+        } 
+        catch (Exception e){ 
+        }
         jLabelTitulo1 = new javax.swing.JLabel();
         jLabelTitulo2 = new javax.swing.JLabel();
         jButtonCriarConta = new javax.swing.JButton();
@@ -173,10 +179,10 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
-        jLabelTitulo1.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLabelTitulo1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabelTitulo1.setText("Não tem uma Conta?");
 
-        jLabelTitulo2.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLabelTitulo2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabelTitulo2.setText("Já tem uma Conta?");
 
         jButtonCriarConta.setText("Criar Conta");
