@@ -15,9 +15,10 @@ public class TelaLogin extends javax.swing.JFrame {
     public TelaLogin() {
         initComponents();
         TelaLogin.controleUsuarios = new ControleUsuarios();
+        this.labelCampoInvalidoInvisivel();
     }
 
-    private void limparCampos(){
+    private void limparCampos() {
         jTextFieldCriarUsuario.setText(null);
         jTextFieldUsuario.setText(null);
         jTextFieldCriarEmail.setText(null);
@@ -28,46 +29,83 @@ public class TelaLogin extends javax.swing.JFrame {
         jComboBoxCriarDiaNascimento.setSelectedIndex(0);
         jComboBoxCriarMesNascimento.setSelectedIndex(0);
         jComboBoxCriarAnoNascimento.setSelectedIndex(0);
-        buttonGroupCriarSexo.clearSelection(); 
+        buttonGroupCriarSexo.clearSelection();
+    }
+
+    private void labelCampoInvalidoInvisivel(){
+        jLabelCriarEmaiIInvalido.setVisible(false);
+        jLabelCriarNomeInvalido.setVisible(false);
+        jLabelCriarSenhaInvalido.setVisible(false);
+        jLabelCriarSexoInvalido.setVisible(false);
+        jLabelCriarTelefoneInvalido.setVisible(false);
+        jLabelCriarUsuarioInvalido.setVisible(false);
+        jLabelCriarAniversarioInvalido.setVisible(false);           
     }
     
     private boolean validarCampos() {
-        //TODO
-        return true;
+        boolean todosCamposSaoValidos = true;
+        if (jTextFieldCriarUsuario.getText().length() < 5 || jTextFieldCriarUsuario.getText().length() > 32) {
+            jLabelCriarUsuarioInvalido.setVisible(true);
+            todosCamposSaoValidos = false;
+        }else  jLabelCriarUsuarioInvalido.setVisible(false);
+        if (jPasswordFieldCriarSenha.getPassword().length < 8 || jPasswordFieldCriarSenha.getPassword().length > 32) {
+            jLabelCriarSenhaInvalido.setVisible(true);
+            todosCamposSaoValidos = false;
+        }else jLabelCriarSenhaInvalido.setVisible(false);
+        if (jTextFieldCriarNome.getText().isEmpty()) {
+            jLabelCriarNomeInvalido.setVisible(true);
+            todosCamposSaoValidos = false;
+        }else jLabelCriarNomeInvalido.setVisible(false);
+        if(buttonGroupCriarSexo.isSelected(null)){
+            jLabelCriarSexoInvalido.setVisible(true);
+            todosCamposSaoValidos = false;
+        }else jLabelCriarSexoInvalido.setVisible(false); 
+        if(jComboBoxCriarDiaNascimento.getSelectedIndex() == 0
+                || jComboBoxCriarMesNascimento.getSelectedIndex() == 0
+                || jComboBoxCriarAnoNascimento.getSelectedIndex() == 0) {
+            jLabelCriarAniversarioInvalido.setVisible(true); 
+            todosCamposSaoValidos = false;  
+        }else jLabelCriarAniversarioInvalido.setVisible(false);    
+        /*if(jTextFieldCriarTelefone.getText().length() < 10 || jTextFieldCriarTelefone.getText().length() > 11){
+            jLabelCriarTelefoneInvalido.setVisible(true);
+            todosCamposSaoValidos = false;
+        }else jLabelCriarTelefoneInvalido.setVisible(false);
+        */
+        return (todosCamposSaoValidos);
     }
 
     private void criarConta() {
         novoUsuario = new Usuario(jTextFieldCriarUsuario.getText());
-        
+
         novoUsuario.setEmail(jTextFieldCriarEmail.getText());
         novoUsuario.setSenha(jPasswordFieldCriarSenha.getPassword());
         novoUsuario.setNome(jTextFieldCriarNome.getText());
         novoUsuario.setTelefone(jTextFieldCriarTelefone.getText());
-        
+
         int umDia = Integer.parseInt(jComboBoxCriarDiaNascimento.getSelectedItem().toString());
         int umMes = jComboBoxCriarMesNascimento.getSelectedIndex();
         int umAno = Integer.parseInt(jComboBoxCriarAnoNascimento.getSelectedItem().toString());
         Data umaData = new Data(umDia, umMes, umAno);
         novoUsuario.setDataNascimento(umaData);
-   
-        if (jRadioButtonCriarSexoF.equals(buttonGroupCriarSexo.getSelection())){
+
+        if (jRadioButtonCriarSexoF.equals(buttonGroupCriarSexo.getSelection())) {
             novoUsuario.setSexo('f');
-        }else{
+        } else {
             novoUsuario.setSexo('m');
         }
-        
+
         controleUsuarios.adicionar(novoUsuario);
     }
 
-    private boolean validarAcesso(){
-        if(controleUsuarios.pesquisar(jTextFieldUsuario.getText()) == null){
+    private boolean validarAcesso() {
+        if (controleUsuarios.pesquisar(jTextFieldUsuario.getText()) == null) {
             return false;
-        }else{
+        } else {
             umUsuario = controleUsuarios.pesquisar(jTextFieldUsuario.getText());
             return Arrays.equals(umUsuario.getSenha(), jPasswordSenha.getPassword());
         }
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -103,6 +141,13 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabelTitulo1 = new javax.swing.JLabel();
         jLabelTitulo2 = new javax.swing.JLabel();
         jButtonCriarConta = new javax.swing.JButton();
+        jLabelCriarUsuarioInvalido = new javax.swing.JLabel();
+        jLabelCriarEmaiIInvalido = new javax.swing.JLabel();
+        jLabelCriarNomeInvalido = new javax.swing.JLabel();
+        jLabelCriarSenhaInvalido = new javax.swing.JLabel();
+        jLabelCriarSexoInvalido = new javax.swing.JLabel();
+        jLabelCriarAniversarioInvalido = new javax.swing.JLabel();
+        jLabelCriarTelefoneInvalido = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,7 +170,6 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabelCriarUsuario.setText("Usuario:");
 
-        jTextFieldCriarUsuario.setToolTipText(""); // NOI18N
         jTextFieldCriarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldCriarUsuarioActionPerformed(evt);
@@ -201,6 +245,34 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
+        jLabelCriarUsuarioInvalido.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
+        jLabelCriarUsuarioInvalido.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelCriarUsuarioInvalido.setText("O nome de usuáriio deve ter entre 8 e 32 caracteres.");
+
+        jLabelCriarEmaiIInvalido.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
+        jLabelCriarEmaiIInvalido.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelCriarEmaiIInvalido.setText("Digite um email válido");
+
+        jLabelCriarNomeInvalido.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
+        jLabelCriarNomeInvalido.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelCriarNomeInvalido.setText("Preencha o campo nome.");
+
+        jLabelCriarSenhaInvalido.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
+        jLabelCriarSenhaInvalido.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelCriarSenhaInvalido.setText("A senha deve ter entre 8 e 32 caracteres.");
+
+        jLabelCriarSexoInvalido.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
+        jLabelCriarSexoInvalido.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelCriarSexoInvalido.setText("Selecione seu sexo.");
+
+        jLabelCriarAniversarioInvalido.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
+        jLabelCriarAniversarioInvalido.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelCriarAniversarioInvalido.setText("Selecione o dia, mês e ano do seu nascimento.");
+
+        jLabelCriarTelefoneInvalido.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
+        jLabelCriarTelefoneInvalido.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelCriarTelefoneInvalido.setText("O telefone deve conter 10 ou 11 digitos");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -218,45 +290,50 @@ public class TelaLogin extends javax.swing.JFrame {
                             .addComponent(jLabelCriarDataNasc))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBoxCriarDiaNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxCriarMesNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxCriarAnoNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(342, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jButtonCriarConta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldCriarTelefone, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGap(2, 2, 2)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jButtonCriarConta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextFieldCriarTelefone, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(2, 2, 2)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jTextFieldCriarEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
                                             .addComponent(jPasswordFieldCriarSenha, javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jTextFieldCriarUsuario)
                                             .addComponent(jTextFieldCriarNome, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jRadioButtonCriarSexoF)
-                                                .addGap(29, 29, 29)
-                                                .addComponent(jRadioButtonCriarSexoM))
-                                            .addComponent(jLabelTitulo1))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabelUsuario, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabelSenha))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jPasswordSenha)
-                                            .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jLabelTitulo2))
-                                .addGap(53, 53, 53))))
+                                            .addComponent(jLabelTitulo1))
+                                        .addComponent(jLabelCriarSenhaInvalido)
+                                        .addComponent(jLabelCriarEmaiIInvalido)
+                                        .addComponent(jLabelCriarUsuarioInvalido)
+                                        .addComponent(jLabelCriarNomeInvalido)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jRadioButtonCriarSexoF)
+                                            .addGap(29, 29, 29)
+                                            .addComponent(jRadioButtonCriarSexoM)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jLabelCriarSexoInvalido)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jComboBoxCriarDiaNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxCriarMesNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxCriarAnoNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelCriarAniversarioInvalido)
+                            .addComponent(jLabelCriarTelefoneInvalido)))
+                    .addComponent(jLabelCriarTelefone))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelCriarTelefone)
-                        .addGap(0, 678, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelUsuario, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelSenha))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPasswordSenha)
+                            .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabelTitulo2))
+                .addGap(53, 53, 53))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,15 +348,21 @@ public class TelaLogin extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelCriarUsuario)
                             .addComponent(jTextFieldCriarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabelCriarUsuarioInvalido)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelCriarSenha)
                             .addComponent(jPasswordFieldCriarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelCriarSenhaInvalido)
+                        .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelCriarEmail)
                             .addComponent(jTextFieldCriarEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelCriarEmaiIInvalido)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelCriarNome)
                             .addComponent(jTextFieldCriarNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -293,12 +376,15 @@ public class TelaLogin extends javax.swing.JFrame {
                             .addComponent(jPasswordSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(2, 2, 2)
+                .addComponent(jLabelCriarNomeInvalido)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jRadioButtonCriarSexoF)
-                            .addComponent(jRadioButtonCriarSexoM))
+                            .addComponent(jRadioButtonCriarSexoM)
+                            .addComponent(jLabelCriarSexoInvalido))
                         .addGap(7, 7, 7))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelCriarSexo)
@@ -308,16 +394,18 @@ public class TelaLogin extends javax.swing.JFrame {
                     .addComponent(jComboBoxCriarDiaNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxCriarMesNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxCriarAnoNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelCriarAniversarioInvalido)
+                .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCriarTelefone)
                     .addComponent(jTextFieldCriarTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelCriarTelefoneInvalido)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonCriarConta)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
-
-        jTextFieldCriarUsuario.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -327,11 +415,11 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldUsuarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (this.validarAcesso()){
+        if (this.validarAcesso()) {
             TelaAgenda1 umaTelaAgenda = new TelaAgenda1();
             umaTelaAgenda.setVisible(true);
             this.setVisible(false);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Usuario ou senha inexistente.");
             this.limparCampos();
         }
@@ -362,9 +450,11 @@ private void jTextFieldCriarTelefoneInputMethodTextChanged(java.awt.event.InputM
 }//GEN-LAST:event_jTextFieldCriarTelefoneInputMethodTextChanged
 
     private void jButtonCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCriarContaActionPerformed
-        this.criarConta();
-        this.limparCampos();
-        JOptionPane.showMessageDialog(null, "Usuário criado com sucesso!");
+        if (this.validarCampos()){
+            this.criarConta();
+            this.limparCampos();
+            JOptionPane.showMessageDialog(null, "Usuário criado com sucesso!");
+        }
     }//GEN-LAST:event_jButtonCriarContaActionPerformed
 
     /**
@@ -410,13 +500,20 @@ private void jTextFieldCriarTelefoneInputMethodTextChanged(java.awt.event.InputM
     private javax.swing.JComboBox jComboBoxCriarAnoNascimento;
     private javax.swing.JComboBox jComboBoxCriarDiaNascimento;
     private javax.swing.JComboBox jComboBoxCriarMesNascimento;
+    private javax.swing.JLabel jLabelCriarAniversarioInvalido;
     private javax.swing.JLabel jLabelCriarDataNasc;
+    private javax.swing.JLabel jLabelCriarEmaiIInvalido;
     private javax.swing.JLabel jLabelCriarEmail;
     private javax.swing.JLabel jLabelCriarNome;
+    private javax.swing.JLabel jLabelCriarNomeInvalido;
     private javax.swing.JLabel jLabelCriarSenha;
+    private javax.swing.JLabel jLabelCriarSenhaInvalido;
     private javax.swing.JLabel jLabelCriarSexo;
+    private javax.swing.JLabel jLabelCriarSexoInvalido;
     private javax.swing.JLabel jLabelCriarTelefone;
+    private javax.swing.JLabel jLabelCriarTelefoneInvalido;
     private javax.swing.JLabel jLabelCriarUsuario;
+    private javax.swing.JLabel jLabelCriarUsuarioInvalido;
     private javax.swing.JLabel jLabelSenha;
     private javax.swing.JLabel jLabelTitulo1;
     private javax.swing.JLabel jLabelTitulo2;
