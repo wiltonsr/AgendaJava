@@ -3,6 +3,7 @@ package views;
 import controllers.ControleUsuarios;
 import javax.swing.JOptionPane;
 import models.Usuario;
+import models.Data;
 
 public class TelaLogin extends javax.swing.JFrame {
 
@@ -41,9 +42,13 @@ public class TelaLogin extends javax.swing.JFrame {
         novoUsuario.setSenha(jPasswordFieldCriarSenha.getPassword());
         novoUsuario.setNome(jTextFieldCriarNome.getText());
         novoUsuario.setTelefone(jTextFieldCriarTelefone.getText());
-        //novoUsuario.setDataNascimentoDia(jComboBoxCriarDiaNascimento.getSelectedIndex());
-        //novoUsuario.setDataNascimentoMes(jComboBoxCriarMesNascimento.getSelectedIndex());
-        //novoUsuario.setDataNascimentoAno(Integer.parseInt(jComboBoxCriarAnoNascimento.getSelectedItem().toString()));
+        
+        int umDia = Integer.parseInt(jComboBoxCriarDiaNascimento.getSelectedItem().toString());
+        int umMes = jComboBoxCriarMesNascimento.getSelectedIndex();
+        int umAno = Integer.parseInt(jComboBoxCriarAnoNascimento.getSelectedItem().toString());
+        Data umaData = new Data(umDia, umMes, umAno);
+        novoUsuario.setDataNascimento(umaData);
+        
         if (jRadioButtonCriarSexoF.equals(buttonGroupCriarSexo.getSelection())){
             novoUsuario.setSexo('f');
         }else{
@@ -152,7 +157,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabelCriarDataNasc.setText("Data de nascimento:");
 
-        jComboBoxCriarDiaNascimento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dia", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        jComboBoxCriarDiaNascimento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dia", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
         jComboBoxCriarMesNascimento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mês", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" }));
 
@@ -337,7 +342,7 @@ private void jTextFieldCriarTelefoneInputMethodTextChanged(java.awt.event.InputM
     private void jButtonCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCriarContaActionPerformed
         this.criarUsuario();
         this.limparCampos();
-        //JOptionPane.showMessageDialog(null, "Usuario criado com sucesso!");
+        JOptionPane.showMessageDialog(null, "Usuario criado com sucesso!");
     }//GEN-LAST:event_jButtonCriarContaActionPerformed
 
     /**
