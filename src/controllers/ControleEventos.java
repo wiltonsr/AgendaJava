@@ -2,7 +2,7 @@ package controllers;
 
 import models.Evento;
 import java.util.ArrayList;
-import models.Usuario;
+
 
 public class ControleEventos {
 
