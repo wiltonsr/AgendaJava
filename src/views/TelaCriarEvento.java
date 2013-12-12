@@ -203,6 +203,10 @@ public class TelaCriarEvento extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jDateChooserDataInicio.getAccessibleContext().setAccessibleDescription("");
+        jDateChooserDataFim.getAccessibleContext().setAccessibleName("");
+        jDateChooserDataFim.getAccessibleContext().setAccessibleDescription("");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 

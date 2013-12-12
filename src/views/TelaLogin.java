@@ -14,7 +14,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
     public TelaLogin() {
         initComponents();
-        this.controleUsuarios = new ControleUsuarios();
+        TelaLogin.controleUsuarios = new ControleUsuarios();
     }
 
     private void limparCampos(){
@@ -68,7 +68,6 @@ public class TelaLogin extends javax.swing.JFrame {
         }
     }
     
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -365,7 +364,7 @@ private void jTextFieldCriarTelefoneInputMethodTextChanged(java.awt.event.InputM
     private void jButtonCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCriarContaActionPerformed
         this.criarConta();
         this.limparCampos();
-        JOptionPane.showMessageDialog(null, "Usuario criado com sucesso!");
+        JOptionPane.showMessageDialog(null, "Usuário criado com sucesso!");
     }//GEN-LAST:event_jButtonCriarContaActionPerformed
 
     /**
