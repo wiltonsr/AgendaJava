@@ -35,7 +35,7 @@ public class TelaLogin extends javax.swing.JFrame {
         return true;
     }
 
-    private void criarUsuario() {
+    private void criarConta() {
         novoUsuario = new Usuario(jTextFieldCriarUsuario.getText());
         
         novoUsuario.setEmail(jTextFieldCriarEmail.getText());
@@ -340,7 +340,7 @@ private void jTextFieldCriarTelefoneInputMethodTextChanged(java.awt.event.InputM
 }//GEN-LAST:event_jTextFieldCriarTelefoneInputMethodTextChanged
 
     private void jButtonCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCriarContaActionPerformed
-        this.criarUsuario();
+        this.criarConta();
         this.limparCampos();
         JOptionPane.showMessageDialog(null, "Usuario criado com sucesso!");
     }//GEN-LAST:event_jButtonCriarContaActionPerformed
