@@ -9,17 +9,15 @@ public class Usuario {
     private char sexo;
     private Data dataNascimento;
     private char[] senha;
-    private String telefone;
     private String email;
     private ArrayList<Agenda> minhasAgendas;
 
-    public Usuario(String usuario, String nome, char sexo, Data dataNascimento, char[] senha, String telefone, String email) {
+    public Usuario(String usuario, String nome, char sexo, Data dataNascimento, char[] senha, String email) {
         this.usuario = usuario;
         this.nome = nome;
         this.sexo = sexo;
         this.dataNascimento = dataNascimento;
         this.senha = senha;
-        this.telefone = telefone;
         this.email = email;
     }
 
@@ -65,14 +63,6 @@ public class Usuario {
 
     public void setSenha(char[] senha) {
         this.senha = senha;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
     }
 
     public String getEmail() {
