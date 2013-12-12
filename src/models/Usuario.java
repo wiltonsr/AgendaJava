@@ -58,18 +58,6 @@ public class Usuario {
     public void setDataNascimento(Data dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-    
-    public void setDataNascimentoDia(int diaNascimento){
-        this.dataNascimento.setDia(diaNascimento);
-    }
-    
-    public void setDataNascimentoMes(int mesNascimento){
-        this.dataNascimento.setMes(mesNascimento);
-    }
-    
-    public void setDataNascimentoAno(int anoNascimento){
-        this.dataNascimento.setAno(anoNascimento);
-    }
 
     public char[] getSenha() {
         return senha;
