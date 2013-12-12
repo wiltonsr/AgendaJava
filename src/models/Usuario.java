@@ -23,6 +23,10 @@ public class Usuario {
         this.email = email;
     }
 
+    public Usuario(String usuario) {
+        this.usuario = usuario;
+    }
+
     public String getUsuario() {
         return usuario;
     }
