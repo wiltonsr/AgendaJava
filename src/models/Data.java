@@ -1,6 +1,6 @@
 package models;
 
-class Data {
+public class Data {
 
     private int dia;
     private int mes;
