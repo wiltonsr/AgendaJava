@@ -420,7 +420,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (this.validarAcesso()) {
-            TelaAgenda1 umaTelaAgenda = new TelaAgenda1();
+            TelaAgenda umaTelaAgenda = new TelaAgenda();
             umaTelaAgenda.setVisible(true);
             this.setVisible(false);
         } else {
