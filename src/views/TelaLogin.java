@@ -1,6 +1,7 @@
 package views;
 
 import controllers.ControleUsuarios;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 import models.Usuario;
 import models.Data;
@@ -48,7 +49,7 @@ public class TelaLogin extends javax.swing.JFrame {
         int umAno = Integer.parseInt(jComboBoxCriarAnoNascimento.getSelectedItem().toString());
         Data umaData = new Data(umDia, umMes, umAno);
         novoUsuario.setDataNascimento(umaData);
-        
+   
         if (jRadioButtonCriarSexoF.equals(buttonGroupCriarSexo.getSelection())){
             novoUsuario.setSexo('f');
         }else{
@@ -58,6 +59,15 @@ public class TelaLogin extends javax.swing.JFrame {
         controleUsuarios.adicionar(novoUsuario);
     }
 
+    private boolean validarAcesso(){
+        if(controleUsuarios.pesquisar(jTextFieldUsuario.getText()) == null){
+            return false;
+        }else{
+            umUsuario = controleUsuarios.pesquisar(jTextFieldUsuario.getText());
+            return Arrays.equals(umUsuario.getSenha(), jPasswordSenha.getPassword());
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -318,7 +328,14 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldUsuarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if (this.validarAcesso()){
+            TelaAgenda1 umaTelaAgenda = new TelaAgenda1();
+            umaTelaAgenda.setVisible(true);
+            this.setVisible(false);
+        }else{
+            JOptionPane.showMessageDialog(null, "Usuario ou senha inexistente.");
+            this.limparCampos();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextFieldCriarNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCriarNomeActionPerformed
