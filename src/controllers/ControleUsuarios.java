@@ -23,9 +23,9 @@ public class ControleUsuarios {
         listaUsuarios.remove(novoUsuario);
     }
 
-    public Usuario pesquisar(String nome) {
+    public Usuario pesquisar(String usuario) {
         for (Usuario u : listaUsuarios) {
-            if (u.getNome().equalsIgnoreCase(nome)) {
+            if (u.getUsuario().equalsIgnoreCase(usuario)) {
                 return u;
             }
         }
