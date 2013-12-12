@@ -1,38 +1,56 @@
 package views;
 
 import controllers.ControleUsuarios;
+import javax.swing.JOptionPane;
 import models.Usuario;
 
 public class TelaLogin extends javax.swing.JFrame {
 
-    private ControleUsuarios umControleUsuarios;
+    private static ControleUsuarios controleUsuarios;
     private Usuario umUsuario;
     private Usuario novoUsuario;
 
     public TelaLogin() {
         initComponents();
-        this.umControleUsuarios = new ControleUsuarios();
+        this.controleUsuarios = new ControleUsuarios();
     }
 
-    private boolean validarCampo() {
+    private void limparCampos(){
+        jTextFieldCriarUsuario.setText(null);
+        jTextFieldUsuario.setText(null);
+        jTextFieldCriarEmail.setText(null);
+        jTextFieldCriarNome.setText(null);
+        jPasswordFieldCriarSenha.setText(null);
+        jPasswordSenha.setText(null);
+        jTextFieldCriarTelefone.setText(null);
+        jComboBoxCriarDiaNascimento.setSelectedIndex(0);
+        jComboBoxCriarMesNascimento.setSelectedIndex(0);
+        jComboBoxCriarAnoNascimento.setSelectedIndex(0);
+        buttonGroupCriarSexo.clearSelection(); 
+    }
+    
+    private boolean validarCampos() {
         //TODO
         return true;
     }
 
-    private void CriarUsuario() {
-        novoUsuario.setUsuario(jTextFieldCriarUsuario.getText());
+    private void criarUsuario() {
+        novoUsuario = new Usuario(jTextFieldCriarUsuario.getText());
+        
         novoUsuario.setEmail(jTextFieldCriarEmail.getText());
         novoUsuario.setSenha(jPasswordFieldCriarSenha.getPassword());
         novoUsuario.setNome(jTextFieldCriarNome.getText());
         novoUsuario.setTelefone(jTextFieldCriarTelefone.getText());
+        //novoUsuario.setDataNascimentoDia(jComboBoxCriarDiaNascimento.getSelectedIndex());
+        //novoUsuario.setDataNascimentoMes(jComboBoxCriarMesNascimento.getSelectedIndex());
+        //novoUsuario.setDataNascimentoAno(Integer.parseInt(jComboBoxCriarAnoNascimento.getSelectedItem().toString()));
         if (jRadioButtonCriarSexoF.equals(buttonGroupCriarSexo.getSelection())){
             novoUsuario.setSexo('f');
         }else{
             novoUsuario.setSexo('m');
         }
-        novoUsuario.setDataNascimentoDia(jComboBoxCriarDiaNascimento.getSelectedIndex());
-        novoUsuario.setDataNascimentoMes(jComboBoxCriarMesNascimento.getSelectedIndex());
-        novoUsuario.setDataNascimentoAno(Integer.parseInt(jComboBoxCriarAnoNascimento.getSelectedItem().toString()));
+        
+        controleUsuarios.adicionar(novoUsuario);
     }
 
     @SuppressWarnings("unchecked")
@@ -112,10 +130,10 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         jTextFieldCriarEmail.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jTextFieldCriarEmailInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
 
@@ -143,10 +161,10 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabelCriarTelefone.setText("Telefone:");
 
         jTextFieldCriarTelefone.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jTextFieldCriarTelefoneInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
 
@@ -157,6 +175,11 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabelTitulo2.setText("Já tem uma Conta?");
 
         jButtonCriarConta.setText("Criar Conta");
+        jButtonCriarConta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCriarContaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -310,6 +333,12 @@ private void jTextFieldCriarEmailInputMethodTextChanged(java.awt.event.InputMeth
 private void jTextFieldCriarTelefoneInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextFieldCriarTelefoneInputMethodTextChanged
 // TODO add your handling code here:
 }//GEN-LAST:event_jTextFieldCriarTelefoneInputMethodTextChanged
+
+    private void jButtonCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCriarContaActionPerformed
+        this.criarUsuario();
+        this.limparCampos();
+        //JOptionPane.showMessageDialog(null, "Usuario criado com sucesso!");
+    }//GEN-LAST:event_jButtonCriarContaActionPerformed
 
     /**
      * @param args the command line arguments
