@@ -96,4 +96,10 @@ public class Evento {
     public void setNomeEvento(String nomeEvento) {
         this.nomeEvento = nomeEvento;
     }
+    
+    @Override
+    public String toString(){
+        return(this.dataInicio.toString() + " às " + this.horaInicio + "h" + this.minInicio + "min em "
+                + this.getLocalEvento() + ". Descrição: "+ this.Descricao);
+    }
 }
