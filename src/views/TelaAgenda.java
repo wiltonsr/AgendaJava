@@ -164,9 +164,9 @@ public class TelaAgenda extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void jButtonExcluirEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirEventoActionPerformed
-        controleEvento.remover(this.umEvento);
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja excluir o evento?", "Excluir Evento", WIDTH);
+        if (resposta == 0) controleEvento.remover(this.umEvento);
         carregarListaEventos();
-        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonExcluirEventoActionPerformed
 
     public static void main(String args[]) {

@@ -56,10 +56,10 @@
                           <Component id="jLabelLocalEventoInvalido" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jDateChooserDataInicio" pref="133" max="32767" attributes="0"/>
                                   <Component id="jDateChooserDataFim" max="32767" attributes="0"/>
-                                  <Component id="jDateChooserDataInicio" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabelHorarioInicio" min="-2" max="-2" attributes="0"/>
@@ -90,7 +90,7 @@
                               <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="89" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="80" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
