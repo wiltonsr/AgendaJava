@@ -21,10 +21,12 @@ public class TelaAgenda extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTableListaEventos.getModel();
         model.setRowCount(0);
         for (Evento e : listaEventos) {
-            model.addRow(new String[]{e.getNomeEvento(), e.toString()});
+            model.addRow(new String[]{e.getNomeEvento(), e.getDescricao(), e.getLocalEvento(), e.dataInicioToString(), e.dataFimToString()});
         }
         jTableListaEventos.setModel(model);
     }
+    
+    
     
     private void exibirInformacao(String info) {
         JOptionPane.showMessageDialog(this, info, "Atenção", JOptionPane.INFORMATION_MESSAGE);
@@ -76,7 +78,11 @@ public class TelaAgenda extends javax.swing.JFrame {
             }
         });
 
-        jTableListaEventos.setModel(new javax.swing.table.DefaultTableModel(null, new String[]{"Nome Evento","Descrição"}));
+        jTableListaEventos.setModel(new javax.swing.table.DefaultTableModel
+            (null, new String[]{"Nome do Evento","Descrição","Local","Data Inicio","Data Fim"}));
+        jTableListaEventos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jTableListaEventos.setEditingColumn(0);
+        jTableListaEventos.setEditingRow(0);
         jTableListaEventos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableListaEventosMouseClicked(evt);
@@ -109,31 +115,31 @@ public class TelaAgenda extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jCalendarAgenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jButtonCriarEvento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonEditarEvento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonExcluirEvento))
-                    .addComponent(jScrollPaneEventos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jCalendarAgenda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPaneEventos, javax.swing.GroupLayout.DEFAULT_SIZE, 1108, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jCalendarAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jCalendarAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCriarEvento)
                     .addComponent(jButtonEditarEvento)
                     .addComponent(jButtonExcluirEvento))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneEventos, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPaneEventos, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
