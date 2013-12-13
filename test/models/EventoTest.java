@@ -78,6 +78,7 @@ public class EventoTest {
 
     @Test
     public void testGetDataFim() {
+        Date outraData = new Date(2, 13082013, 4, 4,5,3);
         assertEquals(outraData, umEvento.getDataFim());
     }
 
@@ -90,6 +91,7 @@ public class EventoTest {
 
     @Test
     public void testGetDataInicio() {
+        Date umaData = new Date(1, 12082013, 4, 4,5,3);
         assertEquals(umaData, umEvento.getDataInicio());
     }
 
