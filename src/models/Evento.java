@@ -108,4 +108,10 @@ public class Evento {
         
         return(dataFimFormatada.toString() + " às " + this.horaFim + "h" + this.minFim + "min"); 
     }
+    
+    public String apenasDataInicioToString(){
+        String dataInicioFormatada = new SimpleDateFormat("dd/MM/yyyy").format(this.dataInicio); 
+        
+        return(dataInicioFormatada);
+    }
 }
