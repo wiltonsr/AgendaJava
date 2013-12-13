@@ -42,7 +42,7 @@ public class ControleUsuariosTest {
 
 	@Test
 	public void testAdicionar() {
-		Usuario usuariosNovo = new Usuario();
+	Usuario usuariosNovo = new Usuario("Wilton");
         ArrayList<Usuario> listaTest = new ArrayList<Usuario>();
         
         listaTest.add(usuario1);

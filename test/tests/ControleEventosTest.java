@@ -16,7 +16,7 @@ public class ControleEventosTest {
 	
 	@Before
 	public void setUp() throws Exception{
-        evento1 = new Evento("Festa de são João");
+        evento1 = new Evento("Festa de sao Joao");
         evento2 = new Evento("Natal");
         evento3 = new Evento("Ferias");
         umControle = new ControleEventos();
