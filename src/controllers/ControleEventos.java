@@ -32,4 +32,8 @@ public class ControleEventos {
         }
         return null;
     }
+    
+    public boolean isEmpty(){
+        return this.listaEventos.isEmpty();
+    }
 }

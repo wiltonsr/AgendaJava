@@ -5,10 +5,12 @@ import models.Evento;
 
 public class TelaCriarEvento extends javax.swing.JFrame {
     private Evento umEvento;
+    boolean salvar;
     
     public TelaCriarEvento() {
         initComponents();
         this.labelCampoInvalidoInvisivel();
+        this.salvar = false;
     }
     
     public TelaCriarEvento(Evento umEvento){
@@ -16,6 +18,7 @@ public class TelaCriarEvento extends javax.swing.JFrame {
         this.labelCampoInvalidoInvisivel();
         this.umEvento = umEvento;
         preencherCampos();
+        this.salvar = true;
     }
     
     private void preencherCampos(){
@@ -114,7 +117,8 @@ public class TelaCriarEvento extends javax.swing.JFrame {
         jLabelDescricao = new javax.swing.JLabel();
         jLabelDataslEventoInvalido = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
 
         jLabelNomeEvento.setText("Nome do Evento:");
 
@@ -312,9 +316,14 @@ public class TelaCriarEvento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        this.limparCampos();
-        TelaAgenda.controleEvento.adicionar(umEvento);
-        this.setVisible(false);
+        if (this.salvar){
+            this.limparCampos();
+            this.setVisible(false);           
+            TelaAgenda.controleEvento.adicionar(umEvento);
+        }else{
+            this.limparCampos();
+            this.dispose();
+        }
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jComboBoxHoraFimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxHoraFimActionPerformed
@@ -329,7 +338,7 @@ public class TelaCriarEvento extends javax.swing.JFrame {
         if(this.validarCampos()){
             this.criarEvento();
             TelaAgenda.controleEvento.adicionar(umEvento);
-            this.setVisible(false);
+            this.dispose();
         }  
     }//GEN-LAST:event_jButtonOKActionPerformed
 
