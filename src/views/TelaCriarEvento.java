@@ -1,7 +1,6 @@
 
 package views;
 
-import java.text.SimpleDateFormat;
 import models.Evento;
 
 public class TelaCriarEvento extends javax.swing.JFrame {
@@ -203,7 +202,7 @@ public class TelaCriarEvento extends javax.swing.JFrame {
                             .addComponent(jLabelLocalEventoInvalido)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jDateChooserDataFim, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                                    .addComponent(jDateChooserDataFim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jDateChooserDataInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(14, 14, 14)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,7 +304,7 @@ public class TelaCriarEvento extends javax.swing.JFrame {
 
     private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
         if(this.validarCampos()){
-            TelaCriarEvento.retorno();
+            TelaAgenda.controleEvento.adicionar(umEvento);
             this.setVisible(false);
         }  
     }//GEN-LAST:event_jButtonOKActionPerformed
@@ -336,9 +335,10 @@ public class TelaCriarEvento extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TelaCriarEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+    
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new TelaCriarEvento().setVisible(true);
             }
