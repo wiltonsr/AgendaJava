@@ -64,7 +64,7 @@ public class TelaLogin extends javax.swing.JFrame {
             jLabelConfirmarSenhaInvalido.setVisible(true);
             todosCamposSaoValidos = false;
         }
-        if (jTextFieldCriarNome.getText().isEmpty()) {
+        if (jTextFieldCriarNome.getText().length() < 2) {
             jLabelCriarNomeInvalido.setVisible(true);
             todosCamposSaoValidos = false;
         }else jLabelCriarNomeInvalido.setVisible(false);
@@ -236,7 +236,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabelCriarNomeInvalido.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
         jLabelCriarNomeInvalido.setForeground(new java.awt.Color(255, 0, 0));
-        jLabelCriarNomeInvalido.setText("Preencha o campo nome.");
+        jLabelCriarNomeInvalido.setText("Preencha o campo nome com ao menos 5 caracteres.");
 
         jLabelCriarSenhaInvalido.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
         jLabelCriarSenhaInvalido.setForeground(new java.awt.Color(255, 0, 0));
