@@ -304,6 +304,7 @@ public class TelaCriarEvento extends javax.swing.JFrame {
 
     private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
         if(this.validarCampos()){
+            this.criarEvento();
             TelaAgenda.controleEvento.adicionar(umEvento);
             this.setVisible(false);
         }  
