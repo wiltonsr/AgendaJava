@@ -1,25 +1,71 @@
 package views;
 
 import controllers.ControleEventos;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import models.Evento;
 
 public class TelaAgenda extends javax.swing.JFrame {
-    ControleEventos umControleEvento;
+    static ControleEventos controleEvento;
+    private Evento umEvento;
    
     public TelaAgenda() {
-        initComponents();  
+        initComponents();
+        controleEvento = new ControleEventos();
     }
+    
+    public void carregarListaEventos() {
+        ArrayList<Evento> listaEventos = controleEvento.getListaEventos();
+        DefaultTableModel model = (DefaultTableModel) jTableListaEventos.getModel();
+        model.setRowCount(0);
+        for (Evento e : listaEventos) {
+            model.addRow(new String[]{e.getNomeEvento(), e.toString()});
+        }
+        jTableListaEventos.setModel(model);
+    }
+    
+    private void exibirInformacao(String info) {
+        JOptionPane.showMessageDialog(this, info, "Atenção", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    private void pesquisarEvento(String nome) {
+        Evento eventoPesquisado = controleEvento.pesquisar(nome);
 
+        if (eventoPesquisado == null) {
+            exibirInformacao("Evento não encontrado.");
+        } else {
+            this.umEvento = eventoPesquisado;
+            //this.preencherCampos();
+            //this.habilitarDesabilitarCampos();
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jCalendar1 = new com.toedter.calendar.JCalendar();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jCalendarAgenda = new com.toedter.calendar.JCalendar();
+        jScrollPaneEventos = new javax.swing.JScrollPane();
+        jTableListaEventos = new javax.swing.JTable();
         jButtonCriarEvento = new javax.swing.JButton();
         jButtonEditarEvento = new javax.swing.JButton();
         jButtonExcluirEvento = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
+
+        jTableListaEventos.setModel(new javax.swing.table.DefaultTableModel(null, new String[]{"Nome Evento","Descrição"}));
+        jTableListaEventos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableListaEventosMouseClicked(evt);
+            }
+        });
+        jScrollPaneEventos.setViewportView(jTableListaEventos);
 
         jButtonCriarEvento.setText("Criar Evento");
         jButtonCriarEvento.addActionListener(new java.awt.event.ActionListener() {
@@ -29,6 +75,11 @@ public class TelaAgenda extends javax.swing.JFrame {
         });
 
         jButtonEditarEvento.setText("Editar Evento");
+        jButtonEditarEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarEventoActionPerformed(evt);
+            }
+        });
 
         jButtonExcluirEvento.setText("Excluir Evento");
 
@@ -45,22 +96,22 @@ public class TelaAgenda extends javax.swing.JFrame {
                         .addComponent(jButtonEditarEvento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonExcluirEvento))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jCalendar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE))
+                    .addComponent(jScrollPaneEventos, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jCalendarAgenda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(228, 228, 228))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(157, 157, 157)
-                .addComponent(jCalendar1, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                .addComponent(jCalendarAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 157, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCriarEvento)
                     .addComponent(jButtonEditarEvento)
                     .addComponent(jButtonExcluirEvento))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPaneEventos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -71,6 +122,22 @@ public class TelaAgenda extends javax.swing.JFrame {
         TelaCriarEvento novoEvento = new TelaCriarEvento();
         novoEvento.setVisible(true);
     }//GEN-LAST:event_jButtonCriarEventoActionPerformed
+
+    private void jTableListaEventosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaEventosMouseClicked
+        if (jTableListaEventos.isEnabled()) {
+            DefaultTableModel model = (DefaultTableModel) jTableListaEventos.getModel();
+            String nome = (String) model.getValueAt(jTableListaEventos.getSelectedRow(), 0);
+            this.pesquisarEvento(nome);
+        }
+    }//GEN-LAST:event_jTableListaEventosMouseClicked
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+        this.carregarListaEventos();
+    }//GEN-LAST:event_formFocusGained
+
+    private void jButtonEditarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarEventoActionPerformed
+        this.carregarListaEventos();
+    }//GEN-LAST:event_jButtonEditarEventoActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -109,7 +176,8 @@ public class TelaAgenda extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCriarEvento;
     private javax.swing.JButton jButtonEditarEvento;
     private javax.swing.JButton jButtonExcluirEvento;
-    private com.toedter.calendar.JCalendar jCalendar1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private com.toedter.calendar.JCalendar jCalendarAgenda;
+    private javax.swing.JScrollPane jScrollPaneEventos;
+    private javax.swing.JTable jTableListaEventos;
     // End of variables declaration//GEN-END:variables
 }
