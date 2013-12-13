@@ -6,5 +6,8 @@ bin
 .project
 .settings/
 build.xml
+/build
 dist/
 manifest.mf
+/AgendaJava/nbproject/private/
+/build/
