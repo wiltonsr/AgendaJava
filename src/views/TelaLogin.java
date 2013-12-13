@@ -18,7 +18,7 @@ public class TelaLogin extends javax.swing.JFrame {
         TelaLogin.controleUsuarios = new ControleUsuarios();
         this.labelCampoInvalidoInvisivel();
     }
-
+    
     private void limparCampos() {
         jTextFieldCriarUsuario.setText(null);
         jTextFieldUsuario.setText(null);
@@ -119,7 +119,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabelSenha = new javax.swing.JLabel();
         jPasswordSenha = new javax.swing.JPasswordField();
         jTextFieldUsuario = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jButtonLogin = new javax.swing.JButton();
         jLabelCriarUsuario = new javax.swing.JLabel();
         jTextFieldCriarUsuario = new javax.swing.JTextField();
         jLabelCriarSenha = new javax.swing.JLabel();
@@ -158,10 +158,10 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Fazer Login");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLogin.setText("Fazer Login");
+        jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonLoginActionPerformed(evt);
             }
         });
 
@@ -191,10 +191,10 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         jTextFieldCriarEmail.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jTextFieldCriarEmailInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
 
@@ -256,6 +256,8 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabelConfirmarSenha.setText("Confirmar senha:");
 
+        jDateChooserNascimento.setDateFormatString("dd/MM/yyyy");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -310,7 +312,7 @@ public class TelaLogin extends javax.swing.JFrame {
                             .addComponent(jLabelSenha))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPasswordSenha)
                             .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
@@ -364,7 +366,7 @@ public class TelaLogin extends javax.swing.JFrame {
                             .addComponent(jLabelSenha)
                             .addComponent(jPasswordSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(jButtonLogin)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelCriarNomeInvalido, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -395,7 +397,7 @@ public class TelaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldUsuarioActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         if (this.validarAcesso()) {
             TelaAgenda umaTelaAgenda = new TelaAgenda();
             umaTelaAgenda.setVisible(true);
@@ -404,7 +406,7 @@ public class TelaLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Usuario ou senha inexistente.");
             this.limparCampos();
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonLoginActionPerformed
 
     private void jTextFieldCriarNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCriarNomeActionPerformed
         // TODO add your handling code here:
@@ -472,8 +474,8 @@ private void jTextFieldCriarEmailInputMethodTextChanged(java.awt.event.InputMeth
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupCriarSexo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCriarConta;
+    private javax.swing.JButton jButtonLogin;
     private com.toedter.calendar.JDateChooser jDateChooserNascimento;
     private javax.swing.JLabel jLabelConfirmarSenha;
     private javax.swing.JLabel jLabelConfirmarSenhaInvalido;
