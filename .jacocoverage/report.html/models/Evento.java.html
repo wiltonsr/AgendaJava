@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Evento.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;AgendaJava&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.html" class="el_package">models</a> &gt; <span class="el_source">Evento.java</span></div><h1>Evento.java</h1><pre class="source lang-java linenums">package models;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Evento {
+
+    private String nomeEvento;
+    private Date dataInicio;
+    private Date dataFim;
+    private int horaInicio;
+    private int minInicio;
+    private int horaFim;
+    private int minFim;
+    private String localEvento;
+    private String Descricao;
+    
+<span class="nc" id="L18">    public Evento(String nomeEvento, Date dataInicio, Date dataFim) {</span>
+<span class="nc" id="L19">        this.nomeEvento = nomeEvento;</span>
+<span class="nc" id="L20">        this.dataInicio = dataInicio;</span>
+<span class="nc" id="L21">        this.dataFim = dataFim;</span>
+<span class="nc" id="L22">    }</span>
+    
+<span class="fc" id="L24">    public Evento(String nomeEvento){</span>
+<span class="fc" id="L25">        this.nomeEvento = nomeEvento;</span>
+<span class="fc" id="L26">    }</span>
+    
+    public int getHoraInicio() {
+<span class="nc" id="L29">        return horaInicio;</span>
+    }
+
+    public void setHoraInicio(int horaInicio) {
+<span class="nc" id="L33">        this.horaInicio = horaInicio;</span>
+<span class="nc" id="L34">    }</span>
+
+    public int getMinInicio() {
+<span class="nc" id="L37">        return minInicio;</span>
+    }
+
+    public void setMinInicio(int minInicio) {
+<span class="nc" id="L41">        this.minInicio = minInicio;</span>
+<span class="nc" id="L42">    }</span>
+
+    public int getHoraFim() {
+<span class="nc" id="L45">        return horaFim;</span>
+    }
+
+    public void setHoraFim(int horaFim) {
+<span class="nc" id="L49">        this.horaFim = horaFim;</span>
+<span class="nc" id="L50">    }</span>
+
+    public int getMinFim() {
+<span class="nc" id="L53">        return minFim;</span>
+    }
+
+    public void setMinFim(int minFim) {
+<span class="nc" id="L57">        this.minFim = minFim;</span>
+<span class="nc" id="L58">    }</span>
+
+    public String getDescricao() {
+<span class="nc" id="L61">        return Descricao;</span>
+    }
+
+    public void setDescricao(String Descricao) {
+<span class="nc" id="L65">        this.Descricao = Descricao;</span>
+<span class="nc" id="L66">    }</span>
+
+    public Date getDataFim() {
+<span class="nc" id="L69">        return dataFim;</span>
+    }
+
+    public void setDataFim(Date dataFim) {
+<span class="nc" id="L73">        this.dataFim = dataFim;</span>
+<span class="nc" id="L74">    }</span>
+
+    public Date getDataInicio() {
+<span class="nc" id="L77">        return dataInicio;</span>
+    }
+
+    public void setDataInicio(Date dataInicio) {
+<span class="nc" id="L81">        this.dataInicio = dataInicio;</span>
+<span class="nc" id="L82">    }</span>
+
+    public String getLocalEvento() {
+<span class="nc" id="L85">        return localEvento;</span>
+    }
+
+    public void setLocalEvento(String localEvento) {
+<span class="nc" id="L89">        this.localEvento = localEvento;</span>
+<span class="nc" id="L90">    }</span>
+
+    public String getNomeEvento() {
+<span class="fc" id="L93">        return nomeEvento;</span>
+    }
+
+    public void setNomeEvento(String nomeEvento) {
+<span class="nc" id="L97">        this.nomeEvento = nomeEvento;</span>
+<span class="nc" id="L98">    }</span>
+    
+    public String dataInicioToString(){
+<span class="nc" id="L101">        String dataInicioFormatada = new SimpleDateFormat(&quot;dd/MM/yyyy&quot;).format(this.dataInicio); </span>
+ 
+<span class="nc" id="L103">        return(dataInicioFormatada.toString() + &quot; às &quot; + this.horaInicio + &quot;h&quot; + this.minInicio + &quot;min&quot;); </span>
+    }
+    
+    public String dataFimToString(){
+<span class="nc" id="L107">        String dataFimFormatada = new SimpleDateFormat(&quot;dd/MM/yyyy&quot;).format(this.dataFim); </span>
+        
+<span class="nc" id="L109">        return(dataFimFormatada.toString() + &quot; às &quot; + this.horaFim + &quot;h&quot; + this.minFim + &quot;min&quot;); </span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.3.201306030806</span></div></body></html>
