@@ -6,11 +6,7 @@ import java.util.ArrayList;
 
 import models.Usuario;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
 import controllers.ControleUsuarios;
 
@@ -21,11 +17,11 @@ public class ControleUsuariosTest {
     Usuario usuario2;
     Usuario usuario3;
 	
-	@BeforeClass
+	@Before
 		public void setUp() throws Exception{
-	        usuario1 = new Usuario("Carlos",'M');
-	        usuario2 = new Usuario("Maria", 'F');
-	        usuario3 = new Usuario("Carla", 'F');
+	        usuario1 = new Usuario("Wilton");
+	        usuario2 = new Usuario("Eduardo");
+	        usuario3 = new Usuario("Paulo");
 	        umControle = new ControleUsuarios();
 	        
 	        umControle.adicionar(usuario1);
@@ -37,7 +33,6 @@ public class ControleUsuariosTest {
 	@Test
 	public void testGetListaUsuarios() {
 		ArrayList<Usuario> listaTest = new ArrayList<Usuario>();
-
         listaTest.add(usuario1);
         listaTest.add(usuario2);
         listaTest.add(usuario3);
@@ -47,7 +42,7 @@ public class ControleUsuariosTest {
 
 	@Test
 	public void testAdicionar() {
-		Usuario usuariosNovo = new Usuario("Romeu", 'M');
+		Usuario usuariosNovo = new Usuario();
         ArrayList<Usuario> listaTest = new ArrayList<Usuario>();
         
         listaTest.add(usuario1);
@@ -62,8 +57,7 @@ public class ControleUsuariosTest {
 
 	@Test
 	public void testRemover() {
-		Usuario usuariosNovo = new Usuario("Romeu", 'M');
-        ArrayList<Usuario> listaTest = new ArrayList<Usuario>();
+		ArrayList<Usuario> listaTest = new ArrayList<Usuario>();
         
         listaTest.add(usuario1);
         listaTest.add(usuario2);
@@ -75,7 +69,7 @@ public class ControleUsuariosTest {
 
 	@Test
 	public void testPesquisar() {
-		assertEquals(usuario2, umControle.pesquisar("Maria"));
+		assertEquals(usuario1, umControle.pesquisar("Wilton"));
 	}
 
 }

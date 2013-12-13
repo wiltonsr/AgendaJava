@@ -7,22 +7,18 @@ import java.util.ArrayList;
 import controllers.ControleEventos;
 import models.Evento;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
 public class ControleEventosTest {
 
 	ControleEventos umControle;
 	Evento evento1, evento2, evento3;
 	
-	@BeforeClass
+	@Before
 	public void setUp() throws Exception{
-        evento1 = new Evento("Festa de são João","F");
-        evento2 = new Evento("Maria", 'F');
-        evento3 = new Evento("Carla", 'F');
+        evento1 = new Evento("Festa de são João");
+        evento2 = new Evento("Natal");
+        evento3 = new Evento("Ferias");
         umControle = new ControleEventos();
         
         umControle.adicionar(evento1);
@@ -43,7 +39,7 @@ public class ControleEventosTest {
 
 	@Test
 	public void testAdicionar() {
-		Evento eventoNovo = new Evento("Romeu", 'M');
+		Evento eventoNovo = new Evento("Ano Novo");
         ArrayList<Evento> listaTest = new ArrayList<Evento>();
         
         listaTest.add(evento1);
@@ -58,8 +54,7 @@ public class ControleEventosTest {
 
 	@Test
 	public void testRemover() {
-		Evento eventoNovo = new Evento("Romeu", 'M');
-        ArrayList<Evento> listaTest = new ArrayList<Evento>();
+		ArrayList<Evento> listaTest = new ArrayList<Evento>();
         
         listaTest.add(evento1);
         listaTest.add(evento2);
@@ -71,7 +66,7 @@ public class ControleEventosTest {
 
 	@Test
 	public void testPesquisar() {
-		assertEquals(evento2, umControle.pesquisar("Maria"));
+		assertEquals(evento2, umControle.pesquisar("Natal"));
 	}
 
 }
