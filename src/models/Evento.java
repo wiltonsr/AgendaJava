@@ -1,6 +1,6 @@
 package models;
 
-import java.util.Calendar;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Evento {
@@ -97,9 +97,15 @@ public class Evento {
         this.nomeEvento = nomeEvento;
     }
     
-    @Override
-    public String toString(){
-        return(this.dataInicio.toString() + " às " + this.horaInicio + "h" + this.minInicio + "min em "
-                + this.getLocalEvento() + ". Descrição: "+ this.Descricao);
+    public String dataInicioToString(){
+        String dataInicioFormatada = new SimpleDateFormat("dd/MM/yyyy").format(this.dataInicio); 
+ 
+        return(dataInicioFormatada.toString() + " às " + this.horaInicio + "h" + this.minInicio + "min"); 
+    }
+    
+    public String dataFimToString(){
+        String dataFimFormatada = new SimpleDateFormat("dd/MM/yyyy").format(this.dataFim); 
+        
+        return(dataFimFormatada.toString() + " às " + this.horaFim + "h" + this.minFim + "min"); 
     }
 }
