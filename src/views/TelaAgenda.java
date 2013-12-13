@@ -13,6 +13,7 @@ public class TelaAgenda extends javax.swing.JFrame {
     public TelaAgenda() {
         initComponents();
         controleEvento = new ControleEventos();
+        this.umEvento = null;
     }
     
     public void carregarListaEventos() {
@@ -33,7 +34,7 @@ public class TelaAgenda extends javax.swing.JFrame {
         Evento eventoPesquisado = controleEvento.pesquisar(nome);
 
         if (eventoPesquisado == null) {
-            exibirInformacao("Evento não encontrado.");
+            this.umEvento = null;
         } else {
             this.umEvento = eventoPesquisado;
         }
@@ -57,6 +58,11 @@ public class TelaAgenda extends javax.swing.JFrame {
             }
             public void windowLostFocus(java.awt.event.WindowEvent evt) {
                 formWindowLostFocus(evt);
+            }
+        });
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                formMouseMoved(evt);
             }
         });
         addFocusListener(new java.awt.event.FocusAdapter() {
@@ -152,9 +158,11 @@ public class TelaAgenda extends javax.swing.JFrame {
     }//GEN-LAST:event_formFocusGained
 
     private void jButtonEditarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarEventoActionPerformed
-        TelaCriarEvento umaTelaModificarEvento = new TelaCriarEvento(this.umEvento);
-        umaTelaModificarEvento.setVisible(true);
-        controleEvento.remover(umEvento);
+        if (this.umEvento != null){
+            TelaCriarEvento umaTelaModificarEvento = new TelaCriarEvento(this.umEvento);
+            umaTelaModificarEvento.setVisible(true);
+            controleEvento.remover(umEvento);
+        }else exibirInformacao("Selecione um evento");
     }//GEN-LAST:event_jButtonEditarEventoActionPerformed
 
     private void formHierarchyChanged(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_formHierarchyChanged
@@ -173,8 +181,13 @@ public class TelaAgenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonExcluirEventoActionPerformed
 
     private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
+        this.pesquisarEvento(null);
         jTableListaEventos.setEnabled(false);
     }//GEN-LAST:event_formWindowLostFocus
+
+    private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formMouseMoved
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
