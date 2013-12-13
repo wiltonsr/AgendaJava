@@ -6,7 +6,6 @@ bin
 .project
 .settings/
 build.xml
-build/
 dist/
 nbproject
 manifest.mf
