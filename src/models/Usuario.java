@@ -13,6 +13,10 @@ public class Usuario {
     private String email;
     private ArrayList<Evento> meusEventos;
 
+    public Usuario(){
+    	this.nome = nome;
+    }
+    
     public Usuario(String usuario, String nome, char sexo, Date dataNascimento, char[] senha, String email) {
         this.usuario = usuario;
         this.nome = nome;

@@ -14,7 +14,7 @@ public class Evento {
     private int minFim;
     private String localEvento;
     private String Descricao;
-
+    
     public Evento(String nomeEvento, Date dataInicio, Date dataFim) {
         this.nomeEvento = nomeEvento;
         this.dataInicio = dataInicio;
