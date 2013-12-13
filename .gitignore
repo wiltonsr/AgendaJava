@@ -6,6 +6,5 @@ bin
 .project
 .settings/
 build.xml
-build/
 dist/
 manifest.mf
