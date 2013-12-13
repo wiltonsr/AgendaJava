@@ -15,7 +15,7 @@ public class Evento {
     private String localEvento;
     private String Descricao;
     
-    public Evento(String nomeEvento, Date dataInicio, Date dataFim, int horaInicio, int minInicio, int horaFim, int minFim, String localEvento, String descricao) {
+    public Evento(String nomeEvento, Date dataInicio, Date dataFim, int horaInicio, int minInicio, int horaFim, int minFim, String localEvento, String Descricao) {
         this.nomeEvento = nomeEvento;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
