@@ -1,12 +1,18 @@
 package views;
 
 import controllers.ControleEventos;
+import java.awt.Color;
+import java.awt.Font;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MutableAttributeSet;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
 import models.Evento;
 
-public class TelaAgenda extends javax.swing.JFrame {
+public class TelaAgenda extends javax.swing.JFrame{
     static ControleEventos controleEvento;
     private Evento umEvento;
    
@@ -15,18 +21,32 @@ public class TelaAgenda extends javax.swing.JFrame {
         controleEvento = new ControleEventos();
         this.umEvento = null;
     }
-    
+     
     public void carregarListaEventos() {
-        ArrayList<Evento> listaEventos = controleEvento.getListaEventos();
+        ArrayList<Evento> listaEventosDodia = dataSelecionada();
         DefaultTableModel model = (DefaultTableModel) jTableListaEventos.getModel();
         model.setRowCount(0);
-        for (Evento e : listaEventos) {
+        for (Evento e : listaEventosDodia) {
             model.addRow(new String[]{e.getNomeEvento(), e.getDescricao(), e.getLocalEvento(), e.dataInicioToString(), e.dataFimToString()});
         }
         jTableListaEventos.setModel(model);
     }
     
-    
+    public ArrayList<Evento> dataSelecionada(){
+        ArrayList<Evento> listaCompleta = controleEvento.getListaEventos();
+        ArrayList<Evento> listaEventosDoDia = new ArrayList<Evento>();
+        
+        String dataSelecionada = new SimpleDateFormat("dd/MM/yyyy").format(jCalendarAgenda.getDate()); 
+        
+        for (Evento e : listaCompleta){
+            if (e.apenasDataInicioToString().equals(dataSelecionada)){
+                listaEventosDoDia.add(e);
+            }
+        }
+        if (listaEventosDoDia.isEmpty()){
+            return listaCompleta;
+        }else return listaEventosDoDia;
+    }
     
     private void exibirInformacao(String info) {
         JOptionPane.showMessageDialog(this, info, "Atenção", JOptionPane.INFORMATION_MESSAGE);
@@ -54,6 +74,14 @@ public class TelaAgenda extends javax.swing.JFrame {
         jButtonExcluirEvento = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                 formWindowGainedFocus(evt);
@@ -75,6 +103,26 @@ public class TelaAgenda extends javax.swing.JFrame {
         addHierarchyListener(new java.awt.event.HierarchyListener() {
             public void hierarchyChanged(java.awt.event.HierarchyEvent evt) {
                 formHierarchyChanged(evt);
+            }
+        });
+
+        jCalendarAgenda.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        jCalendarAgenda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCalendarAgendaMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jCalendarAgendaMousePressed(evt);
+            }
+        });
+        jCalendarAgenda.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jCalendarAgendaMouseMoved(evt);
+            }
+        });
+        jCalendarAgenda.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jCalendarAgendaPropertyChange(evt);
             }
         });
 
@@ -187,14 +235,40 @@ public class TelaAgenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonExcluirEventoActionPerformed
 
     private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
+        this.carregarListaEventos();
         this.pesquisarEvento(null);
         jTableListaEventos.setEnabled(false);
     }//GEN-LAST:event_formWindowLostFocus
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
-        // TODO add your handling code here:
+        carregarListaEventos();
     }//GEN-LAST:event_formMouseMoved
 
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        carregarListaEventos();
+    }//GEN-LAST:event_formMouseClicked
+
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        carregarListaEventos();
+    }//GEN-LAST:event_formMousePressed
+
+    private void jCalendarAgendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCalendarAgendaMouseClicked
+        carregarListaEventos();
+    }//GEN-LAST:event_jCalendarAgendaMouseClicked
+
+    private void jCalendarAgendaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCalendarAgendaMousePressed
+        carregarListaEventos();
+    }//GEN-LAST:event_jCalendarAgendaMousePressed
+
+    private void jCalendarAgendaMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCalendarAgendaMouseMoved
+        carregarListaEventos();
+    }//GEN-LAST:event_jCalendarAgendaMouseMoved
+
+    private void jCalendarAgendaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jCalendarAgendaPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCalendarAgendaPropertyChange
+
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -236,4 +310,5 @@ public class TelaAgenda extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPaneEventos;
     private javax.swing.JTable jTableListaEventos;
     // End of variables declaration//GEN-END:variables
+
 }
