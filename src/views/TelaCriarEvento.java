@@ -313,6 +313,7 @@ public class TelaCriarEvento extends javax.swing.JFrame {
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         this.limparCampos();
+        TelaAgenda.controleEvento.adicionar(umEvento);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 

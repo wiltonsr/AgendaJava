@@ -56,6 +56,7 @@ public class TelaAgenda extends javax.swing.JFrame {
                 formWindowGainedFocus(evt);
             }
             public void windowLostFocus(java.awt.event.WindowEvent evt) {
+                formWindowLostFocus(evt);
             }
         });
         addFocusListener(new java.awt.event.FocusAdapter() {
@@ -153,6 +154,7 @@ public class TelaAgenda extends javax.swing.JFrame {
     private void jButtonEditarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarEventoActionPerformed
         TelaCriarEvento umaTelaModificarEvento = new TelaCriarEvento(this.umEvento);
         umaTelaModificarEvento.setVisible(true);
+        controleEvento.remover(umEvento);
     }//GEN-LAST:event_jButtonEditarEventoActionPerformed
 
     private void formHierarchyChanged(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_formHierarchyChanged
@@ -160,6 +162,7 @@ public class TelaAgenda extends javax.swing.JFrame {
     }//GEN-LAST:event_formHierarchyChanged
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        jTableListaEventos.setEnabled(true);
         this.carregarListaEventos();
     }//GEN-LAST:event_formWindowGainedFocus
 
@@ -168,6 +171,10 @@ public class TelaAgenda extends javax.swing.JFrame {
         if (resposta == 0) controleEvento.remover(this.umEvento);
         carregarListaEventos();
     }//GEN-LAST:event_jButtonExcluirEventoActionPerformed
+
+    private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
+        jTableListaEventos.setEnabled(false);
+    }//GEN-LAST:event_formWindowLostFocus
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
