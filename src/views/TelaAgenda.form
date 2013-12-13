@@ -38,18 +38,18 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jButtonExcluirEvento" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPaneEventos" alignment="1" max="32767" attributes="0"/>
-                  <Component id="jCalendarAgenda" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jScrollPaneEventos" alignment="1" pref="0" max="32767" attributes="0"/>
+                  <Component id="jCalendarAgenda" alignment="1" min="-2" pref="699" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="228" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
-              <Component id="jCalendarAgenda" pref="157" max="32767" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Component id="jCalendarAgenda" min="-2" pref="295" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButtonCriarEvento" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -57,7 +57,7 @@
                   <Component id="jButtonExcluirEvento" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPaneEventos" min="-2" pref="100" max="-2" attributes="0"/>
+              <Component id="jScrollPaneEventos" min="-2" pref="237" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -105,6 +105,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Excluir Evento"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonExcluirEventoActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

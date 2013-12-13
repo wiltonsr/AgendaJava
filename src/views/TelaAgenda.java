@@ -36,8 +36,6 @@ public class TelaAgenda extends javax.swing.JFrame {
             exibirInformacao("Evento não encontrado.");
         } else {
             this.umEvento = eventoPesquisado;
-            //this.preencherCampos();
-            //this.habilitarDesabilitarCampos();
         }
     }
     
@@ -94,6 +92,11 @@ public class TelaAgenda extends javax.swing.JFrame {
         });
 
         jButtonExcluirEvento.setText("Excluir Evento");
+        jButtonExcluirEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirEventoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -108,22 +111,22 @@ public class TelaAgenda extends javax.swing.JFrame {
                         .addComponent(jButtonEditarEvento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonExcluirEvento))
-                    .addComponent(jScrollPaneEventos, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jCalendarAgenda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(228, 228, 228))
+                    .addComponent(jScrollPaneEventos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jCalendarAgenda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(157, 157, 157)
-                .addComponent(jCalendarAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 157, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jCalendarAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCriarEvento)
                     .addComponent(jButtonEditarEvento)
                     .addComponent(jButtonExcluirEvento))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneEventos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPaneEventos, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -148,7 +151,8 @@ public class TelaAgenda extends javax.swing.JFrame {
     }//GEN-LAST:event_formFocusGained
 
     private void jButtonEditarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarEventoActionPerformed
-
+        TelaCriarEvento umaTelaModificarEvento = new TelaCriarEvento(this.umEvento);
+        umaTelaModificarEvento.setVisible(true);
     }//GEN-LAST:event_jButtonEditarEventoActionPerformed
 
     private void formHierarchyChanged(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_formHierarchyChanged
@@ -158,6 +162,12 @@ public class TelaAgenda extends javax.swing.JFrame {
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         this.carregarListaEventos();
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void jButtonExcluirEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirEventoActionPerformed
+        controleEvento.remover(this.umEvento);
+        carregarListaEventos();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonExcluirEventoActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
