@@ -1,17 +1,24 @@
-package tests;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-import static org.junit.Assert.*;
+package controllers;
 
 import java.util.ArrayList;
-
-import controllers.ControleEventos;
 import models.Evento;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-import org.junit.*;
-
+/**
+ *
+ * @author Wilton
+ */
 public class ControleEventosTest {
-
-	ControleEventos umControle;
+    
+    ControleEventos umControle;
 	Evento evento1, evento2, evento3;
 	
 	@Before
@@ -68,5 +75,4 @@ public class ControleEventosTest {
 	public void testPesquisar() {
 		assertEquals(evento2, umControle.pesquisar("Natal"));
 	}
-
 }
