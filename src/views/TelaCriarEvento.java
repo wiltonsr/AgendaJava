@@ -4,17 +4,35 @@ package views;
 import models.Evento;
 
 public class TelaCriarEvento extends javax.swing.JFrame {
-    static Evento umEvento;
+    private Evento umEvento;
     
     public TelaCriarEvento() {
         initComponents();
         this.labelCampoInvalidoInvisivel();
     }
     
-    public static Evento retorno(){
-        return umEvento;
+    public TelaCriarEvento(Evento umEvento){
+        initComponents();
+        this.labelCampoInvalidoInvisivel();
+        this.umEvento = umEvento;
+        preencherCampos();
     }
     
+    private void preencherCampos(){
+        jTextFieldNomeEvento.setText(this.umEvento.getNomeEvento());
+        
+        jDateChooserDataInicio.setDate(this.umEvento.getDataInicio());
+        jComboBoxHoraInicio.setSelectedIndex(this.umEvento.getHoraInicio());
+        jComboBoxMinInicio.setSelectedIndex(this.umEvento.getMinInicio());
+        
+        jDateChooserDataFim.setDate(this.umEvento.getDataFim());
+        jComboBoxHoraFim.setSelectedIndex(this.umEvento.getHoraFim());
+        jComboBoxMinFim.setSelectedIndex(this.umEvento.getMinFim());
+        
+        jTextFieldLocalEvento.setText(this.umEvento.getLocalEvento());
+        jTextAreaDescricao.setText(this.umEvento.getDescricao());
+    }
+     
     private void limparCampos() {
         jTextFieldNomeEvento.setText(null);
         jTextFieldLocalEvento.setText(null);
