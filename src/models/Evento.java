@@ -21,6 +21,10 @@ public class Evento {
         this.dataFim = dataFim;
     }
     
+    public Evento(String nomeEvento){
+        this.nomeEvento = nomeEvento;
+    }
+    
     public int getHoraInicio() {
         return horaInicio;
     }
@@ -51,10 +55,6 @@ public class Evento {
 
     public void setMinFim(int minFim) {
         this.minFim = minFim;
-    }
-    
-    public Evento(String nomeEvento){
-        this.nomeEvento = nomeEvento;
     }
 
     public String getDescricao() {
