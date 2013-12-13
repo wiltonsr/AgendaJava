@@ -150,7 +150,11 @@ public class TelaCriarEvento extends javax.swing.JFrame {
 
         jLabel4.setText("min");
 
-        jDateChooserDataInicio.setMinSelectableDate(new java.util.Date(-62135755106000L));
+        jDateChooserDataInicio.setDateFormatString("dd/MM/yyyy");
+        jDateChooserDataInicio.setMaxSelectableDate(new java.util.Date(253370858399000L));
+        jDateChooserDataInicio.setMinSelectableDate(new java.util.Date(-62135758800000L));
+
+        jDateChooserDataFim.setDateFormatString("dd/MM/yyyy");
 
         jLabelNomeEventoInvalido.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabelNomeEventoInvalido.setForeground(new java.awt.Color(255, 0, 0));
@@ -229,7 +233,7 @@ public class TelaCriarEvento extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabelDataslEventoInvalido)
                                 .addGap(95, 95, 95)))
-                        .addGap(0, 85, Short.MAX_VALUE)))
+                        .addGap(0, 89, Short.MAX_VALUE)))
                 .addGap(45, 45, 45))
         );
         layout.setVerticalGroup(
