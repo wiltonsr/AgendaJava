@@ -15,6 +15,18 @@ public class Evento {
     private String localEvento;
     private String Descricao;
     
+    public Evento(String nomeEvento, Date dataInicio, Date dataFim, int horaInicio, int minInicio, int horaFim, int minFim, String localEvento, String descricao) {
+        this.nomeEvento = nomeEvento;
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
+        this.horaInicio = horaInicio;
+        this.minInicio = minInicio;
+        this.horaFim = horaFim;
+        this.horaInicio = horaInicio;
+        this.localEvento = localEvento;
+        this.Descricao = Descricao;
+    }
+    
     public Evento(String nomeEvento, Date dataInicio, Date dataFim) {
         this.nomeEvento = nomeEvento;
         this.dataInicio = dataInicio;
