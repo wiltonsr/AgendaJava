@@ -1,15 +1,10 @@
 package views;
 
 import controllers.ControleEventos;
-import java.awt.Color;
-import java.awt.Font;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.MutableAttributeSet;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
 import models.Evento;
 
 public class TelaAgenda extends javax.swing.JFrame{
@@ -251,11 +246,13 @@ public class TelaAgenda extends javax.swing.JFrame{
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void jButtonExcluirEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirEventoActionPerformed
-        int resposta = JOptionPane.showConfirmDialog(null, "Deseja excluir o evento?", "Excluir Evento", WIDTH);
-        if (resposta == 0){
-            controleEvento.remover(this.umEvento);
-            carregarListaEventos();
-        }
+         if (this.umEvento != null){
+            int resposta = JOptionPane.showConfirmDialog(null, "Deseja excluir o evento?", "Excluir Evento", WIDTH);
+            if (resposta == 0){
+                controleEvento.remover(this.umEvento);
+                carregarListaEventos();
+            }
+         }else exibirInformacao("Selecione um evento");   
     }//GEN-LAST:event_jButtonExcluirEventoActionPerformed
 
     private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
@@ -300,6 +297,8 @@ public class TelaAgenda extends javax.swing.JFrame{
 
     private void jCalendarAgendaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCalendarAgendaMouseEntered
         carregarListaEventos();
+        this.umEvento = null;
+        
     }//GEN-LAST:event_jCalendarAgendaMouseEntered
 
     private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
